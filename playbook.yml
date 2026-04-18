@@ -1,0 +1,22 @@
+---
+- name: Setup VPN Server
+  hosts: vpn_servers
+  become: yes
+  tasks:
+    - name: Install Docker and Utils
+      apt:
+        name: [docker.io, vnstat, curl]
+        update_cache: yes
+        state: present
+    - name: Start Docker
+      systemd: 
+        name: docker
+        state: started
+        enabled: yes
+    - name: Run 3X-UI Panel
+      shell: |
+        docker run -d --network=host \ 
+        -v /etc/x-ui:/etc/x-ui \
+        -v /root/cert:/root/cert \ 
+        --name 3x-ui --restart unless-stopped \ 
+        ghcr.io/mhsanaei/3x-ui:latest

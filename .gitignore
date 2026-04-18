@@ -1,0 +1,17 @@
+.terraform/
+.tfstate
+.tfstate.backup
+*.tfvars
+*.tfvars.jsom
+crash.log
+crash.*.log
+*.pem
+*.rsa
+*.key
+id_rsa
+id_rsa.pub
+*.ovpn
+*.conf
+.env
+.DS_Store
+Thumbs.db
